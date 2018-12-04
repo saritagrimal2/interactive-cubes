@@ -1,4 +1,4 @@
-package es.uniovi.uo252406.interactive_cubes.fragments;
+package es.uniovi.interactive_cubes.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import es.uniovi.uo252406.interactive_cubes.R;
-import es.uniovi.uo252406.interactive_cubes.logic.Game;
+import es.uniovi.interactive_cubes.logic.Game;
+import es.uniovi.interactive_cubes.R;
+import es.uniovi.interactive_cubes.logic.Game;
 
 
 public class AuthFragment extends Fragment {

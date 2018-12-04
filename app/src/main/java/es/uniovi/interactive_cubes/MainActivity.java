@@ -1,4 +1,4 @@
-package es.uniovi.uo252406.interactive_cubes;
+package es.uniovi.interactive_cubes;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import es.uniovi.uo252406.interactive_cubes.fragments.AuthFragment;
-import es.uniovi.uo252406.interactive_cubes.logic.Game;
+import es.uniovi.interactive_cubes.fragments.AuthFragment;
+import es.uniovi.interactive_cubes.logic.Game;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
