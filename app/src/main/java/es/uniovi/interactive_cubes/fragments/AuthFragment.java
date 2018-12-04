@@ -2,6 +2,7 @@ package es.uniovi.interactive_cubes.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 import es.uniovi.interactive_cubes.logic.Game;
 import es.uniovi.interactive_cubes.R;
-import es.uniovi.interactive_cubes.logic.Game;
+
 
 
 public class AuthFragment extends Fragment {
@@ -93,12 +94,23 @@ public class AuthFragment extends Fragment {
             button.setTextSize(20);
 
             //Asignamos los listener
-            //TODO
+            button.setOnClickListener(new AuthFragment.ButtonsOnClickListener());
 
             lScroll.addView(button);
 
         }
 
+    }
+
+    class ButtonsOnClickListener  implements View.OnClickListener {
+
+
+        @Override
+        public void onClick(View v) {
+
+           FragmentManager fm = getFragmentManager();
+           fm.beginTransaction().replace(R.id.escenario, new QRFragment()).commit();
+        }
     }
 
 
