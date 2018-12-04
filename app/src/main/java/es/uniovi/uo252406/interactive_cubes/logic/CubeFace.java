@@ -1,4 +1,4 @@
-package es.uniovi.interactive_cubes.logic;
+package es.uniovi.uo252406.interactive_cubes.logic;
 
 public class CubeFace implements Comparable<CubeFace> {
 

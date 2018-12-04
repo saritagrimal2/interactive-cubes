@@ -1,4 +1,4 @@
-package es.uniovi.interactive_cubes;
+package es.uniovi.uo252406.interactive_cubes;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("es.uniovi.interactive_cubes", appContext.getPackageName());
+        assertEquals("es.uniovi.uo252406.interactive_cubes", appContext.getPackageName());
     }
 }
