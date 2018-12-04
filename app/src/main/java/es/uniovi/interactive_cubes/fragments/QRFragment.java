@@ -2,14 +2,13 @@ package es.uniovi.interactive_cubes.fragments;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +21,7 @@ import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
 import es.uniovi.interactive_cubes.R;
+import es.uniovi.interactive_cubes.logic.Game;
 
 
 public class QRFragment extends Fragment {
@@ -44,21 +44,24 @@ public class QRFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_qr, container, false);
         CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(activity, scannerView);
+
+        mCodeScanner.startPreview();
+
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull final Result result) {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                        if(Game.getInstance().checkCube(result.getText())) {
+                            FragmentManager fm = getFragmentManager();
+                            fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
+                        }
+                        
                     }
                 });
-            }
-        });
-        scannerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCodeScanner.startPreview();
             }
         });
 

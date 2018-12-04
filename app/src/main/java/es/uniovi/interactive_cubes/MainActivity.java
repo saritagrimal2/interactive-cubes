@@ -1,14 +1,8 @@
 package es.uniovi.interactive_cubes;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import es.uniovi.interactive_cubes.fragments.AuthFragment;
+import es.uniovi.interactive_cubes.fragments.GameFragment;
 import es.uniovi.interactive_cubes.logic.Game;
 
 public class MainActivity extends AppCompatActivity
@@ -42,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.escenario, new AuthFragment()).commit();
+        fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
 
         game = Game.getInstance();
 

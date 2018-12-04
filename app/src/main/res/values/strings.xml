@@ -10,7 +10,7 @@
     //AuthFragment
     <string name="btnSubsLevel">-</string>
     <string name="btnAddLevel">+</string>
-    <string name="txLevel">Level: 1</string>
+    <string name="txLevel">Nivel: 1</string>
     <string name="txConf">CONFIGURACIÓN:</string>
     <string name="txScan">ESCANEO DE CUBOS:</string>
 

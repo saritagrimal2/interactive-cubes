@@ -15,12 +15,12 @@ import es.uniovi.interactive_cubes.R;
 
 
 
-public class AuthFragment extends Fragment {
+public class GameFragment extends Fragment {
 
     private View view;
     private Game game;
 
-    public AuthFragment() {
+    public GameFragment() {
         // Required empty public constructor
     }
 
@@ -31,6 +31,9 @@ public class AuthFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_authentication, container, false);
 
         game = Game.getInstance();
+
+        final TextView txLevel = (TextView) view.findViewById(R.id.txLevel);
+        txLevel.setText("Nivel: "+game.getLevel());
 
         setFunctionality();
         drawCubePanel();
@@ -52,7 +55,7 @@ public class AuthFragment extends Fragment {
         addLevelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txLevel.setText("Level: "+game.incrementLevel());
+                txLevel.setText("Nivel: "+game.incrementLevel());
                 drawCubePanel();
             }
         });
@@ -60,7 +63,7 @@ public class AuthFragment extends Fragment {
         subsLevelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txLevel.setText("Level: "+game.decrementLevel());
+                txLevel.setText("Nivel: "+game.decrementLevel());
                 drawCubePanel();
             }
         });
@@ -94,7 +97,7 @@ public class AuthFragment extends Fragment {
             button.setTextSize(20);
 
             //Asignamos los listener
-            button.setOnClickListener(new AuthFragment.ButtonsOnClickListener());
+            button.setOnClickListener(new GameFragment.ButtonsOnClickListener());
 
             lScroll.addView(button);
 
