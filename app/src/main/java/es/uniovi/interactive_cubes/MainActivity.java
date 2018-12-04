@@ -31,10 +31,13 @@ public class MainActivity extends AppCompatActivity
 
     private Game game;
 
-    private static int RESULT_LOAD_IMAGE = 1;
-    private final int REQUEST_ACCESS_FINE =0;
-
     private Intent galIntent,cropIntent;
+
+    private final int REQUEST_ACCESS_FINE =0;
+    private static int RESULT_LOAD_IMAGE = 1;
+    private static int RESULT_CROP_IMAGE = 2;
+
+
 
 
     @Override
@@ -144,25 +147,11 @@ public class MainActivity extends AppCompatActivity
             cropIntent.putExtra("return-data",true);
 
 
-            startActivityForResult(cropIntent,0);
+            startActivityForResult(cropIntent,RESULT_CROP_IMAGE);
         }
 
         if (requestCode == 0 ) {
 
-            /*
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            Toast.makeText(this,picturePath, Toast.LENGTH_SHORT).show();
-            cursor.close();
-
-            */
             Bundle bundle = data.getExtras();
 
             Bitmap bitmap = bundle.getParcelable("data");
