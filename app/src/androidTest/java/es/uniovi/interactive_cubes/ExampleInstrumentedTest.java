@@ -1,4 +1,4 @@
-package es.uniovi.uo252406.interactive_cubes;
+package es.uniovi.interactive_cubes;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
