@@ -59,7 +59,7 @@ public class QRFragment extends Fragment {
                             FragmentManager fm = getFragmentManager();
                             fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
                         }
-                        
+
                     }
                 });
             }

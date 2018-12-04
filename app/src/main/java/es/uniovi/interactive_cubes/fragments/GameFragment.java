@@ -28,7 +28,7 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_authentication, container, false);
+        view =  inflater.inflate(R.layout.fragment_game, container, false);
 
         game = Game.getInstance();
 
