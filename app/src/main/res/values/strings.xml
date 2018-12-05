@@ -6,4 +6,20 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    //GameFragment
+    <string name="btnSubsLevel">-</string>
+    <string name="btnAddLevel">+</string>
+    <string name="txLevel">Nivel: 1</string>
+    <string name="txConf">CONFIGURACIÓN:</string>
+    <string name="txScan">ESCANEO DE CUBOS:</string>
+    <string name="btnVerify">Verificar</string>
+
+
+    //Auth
+    <string name="facebook_app_id">320744275196487</string>
+    <string name="fb_login_protocol_scheme">fb320744275196487</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
