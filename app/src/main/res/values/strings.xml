@@ -17,7 +17,8 @@
 
 
     //Auth
-    <string name="facebook_app_id">320744275196487</string> <string name="fb_login_protocol_scheme">fb320744275196487</string>
+    <string name="facebook_app_id">320744275196487</string>
+    <string name="fb_login_protocol_scheme">fb320744275196487</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

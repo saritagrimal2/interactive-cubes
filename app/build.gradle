@@ -35,6 +35,9 @@ dependencies {
     implementation 'com.budiyev.android:code-scanner:2.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

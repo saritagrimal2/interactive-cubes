@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import es.uniovi.interactive_cubes.fragments.GameFragment;
+import es.uniovi.interactive_cubes.fragments.StadisticsFragment;
 import es.uniovi.interactive_cubes.logic.Game;
 
 public class MainActivity extends AppCompatActivity
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
+        fm.beginTransaction().replace(R.id.escenario, new StadisticsFragment()).commit();
 
         game = Game.getInstance();
 
