@@ -102,7 +102,7 @@ public class Game {
         }
 
         // That those two elements are digits.
-        if(!strNum.matches("-?\\d+(\\.\\d+)?")) {
+        if(!cubeId.matches("-?\\d+(\\.\\d+)?")) {
             return false;
         }
 
