@@ -91,14 +91,22 @@ public class Game {
 
     public boolean checkCube(String cubeId) {
 
+        // Checks that the id is not null
         if(cubeId == null) {
             return false;
         }
 
+        // Checks that the id has two elements.
         if(cubeId.length() != 2) {
             return false;
         }
 
+        // That those two elements are digits.
+        if(!strNum.matches("-?\\d+(\\.\\d+)?")) {
+            return false;
+        }
+
+        // If all checks passed, then...
         return true;
     }
 }
