@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.escenario, new StadisticsFragment()).commit();
+        fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
 
         game = Game.getInstance();
 
@@ -114,7 +114,8 @@ public class MainActivity extends AppCompatActivity
 
             startActivityForResult(Intent.createChooser(galIntent,"SelectImage"), RESULT_LOAD_IMAGE);
         } else if (id == R.id.nav_gallery) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.escenario, new StadisticsFragment()).commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
