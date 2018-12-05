@@ -105,6 +105,11 @@ public class Game {
         if(!cubeId.matches("-?\\d+(\\.\\d+)?")) {
             return false;
         }
+        
+        // Check the available ranges of cubes ids.
+        if( cubeId.compareTo("11")<0 || cubeId.compareTo("55")>0 ) {
+            return false;
+        }
 
         // If all checks passed, then...
         return true;
