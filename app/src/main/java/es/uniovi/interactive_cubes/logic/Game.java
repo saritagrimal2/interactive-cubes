@@ -8,7 +8,16 @@ public class Game {
     private List<Combination> validCombinations;
     private int currentLevel = 1;
 
-    public Game() {
+    private static Game instance;
+
+
+    public static Game getInstance(){
+        if(instance == null)
+            instance = new Game();
+        return instance;
+    }
+
+    private Game() {
         validCombinations = new ArrayList<Combination>();
 
         // I know this is shit but for this project will serve.
@@ -113,5 +122,22 @@ public class Game {
 
         // If all checks passed, then...
         return true;
+    }
+
+    public int incrementLevel(){
+
+        if(currentLevel <4 )
+            currentLevel++;
+
+        return currentLevel;
+    }
+
+    public int decrementLevel() {
+
+        if(currentLevel > 1 )
+            currentLevel--;
+
+        return currentLevel;
+
     }
 }
