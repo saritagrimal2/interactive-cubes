@@ -1,4 +1,4 @@
-package es.uniovi.uo252406.interactive_cubes;
+package es.uniovi.interactive_cubes;
 
 import org.junit.Test;
 

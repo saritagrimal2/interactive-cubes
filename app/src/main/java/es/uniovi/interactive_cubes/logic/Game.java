@@ -8,16 +8,7 @@ public class Game {
     private List<Combination> validCombinations;
     private int currentLevel = 1;
 
-    private static Game instance;
-
-
-    public static Game getInstance(){
-        if(instance == null)
-            instance = new Game();
-        return instance;
-    }
-
-    private Game() {
+    public Game() {
         validCombinations = new ArrayList<Combination>();
 
         // I know this is shit but for this project will serve.
@@ -87,7 +78,6 @@ public class Game {
         return -1;
     }
 
-
     public Combination checkCombination(String combination) {
 
         for(Combination comb : validCombinations) {
@@ -101,31 +91,27 @@ public class Game {
 
     public boolean checkCube(String cubeId) {
 
+        // Checks that the id is not null
         if(cubeId == null) {
             return false;
         }
 
+        // Checks that the id has two elements.
         if(cubeId.length() != 2) {
             return false;
         }
 
+        // That those two elements are digits.
+        if(!cubeId.matches("-?\\d+(\\.\\d+)?")) {
+            return false;
+        }
+        
+        // Check the available ranges of cubes ids.
+        if( cubeId.compareTo("11")<0 || cubeId.compareTo("55")>0 ) {
+            return false;
+        }
+
+        // If all checks passed, then...
         return true;
-    }
-
-    public int incrementLevel(){
-
-        if(currentLevel <4 )
-            currentLevel++;
-
-        return currentLevel;
-    }
-
-    public int decrementLevel() {
-
-        if(currentLevel > 1 )
-            currentLevel--;
-
-        return currentLevel;
-
     }
 }
