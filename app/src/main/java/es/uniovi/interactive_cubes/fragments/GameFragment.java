@@ -99,9 +99,15 @@ public class GameFragment extends Fragment {
             //Asignamos los listener
             button.setOnClickListener(new GameFragment.ButtonsOnClickListener());
 
+            button.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
             lScroll.addView(button);
 
         }
+
+
+        lScroll = (LinearLayout) view.findViewById(R.id.invisible_layout);
+        lScroll.removeAllViews();
 
     }
 
