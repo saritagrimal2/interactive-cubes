@@ -6,15 +6,11 @@ import java.util.List;
 public class Combination {
 
     private List<CubeFace> cubeFaces;
-    private String song;
     private String songTitle;
-    private String songDescription;
 
-    public Combination(String song, String songTitle, String songDescription) {
+    public Combination(String songTitle) {
         cubeFaces = new ArrayList<CubeFace>();
-        this.song = song;
         this.songTitle = songTitle;
-        this.songDescription = songDescription;
     }
 
     public boolean addCube(CubeFace cube) {
@@ -31,13 +27,7 @@ public class Combination {
         return this.toString().equals(combination);
     }
 
-    public String getSong() {
-        return this.song;
-    }
-
     public String getSongTitle() { return this.songTitle; }
-
-    public String getSongDescription() { return this.songDescription; }
 
     @Override
     public String toString() {
