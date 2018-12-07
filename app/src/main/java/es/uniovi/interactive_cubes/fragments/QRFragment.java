@@ -10,9 +10,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
@@ -29,10 +31,13 @@ public class QRFragment extends Fragment {
     private View view;
     private CodeScanner mCodeScanner;
 
+    private static String index;
+
     private final int REQUEST_ACCESS_FINE =0;
 
-    public QRFragment() {
-        // Required empty public constructor
+
+    public QRFragment(){
+
     }
 
 
@@ -54,11 +59,14 @@ public class QRFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
-                        if(Game.getInstance().checkCube(result.getText())) {
+                        if( Game.getInstance().checkCube(result.getText(),index)){
+                           Game.getInstance().addCombination(result.getText());
+                         }else {
+                            Toast.makeText(activity,"Cubo incorrecto", Toast.LENGTH_SHORT).show();
+                        }
+
                             FragmentManager fm = getFragmentManager();
                             fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
-                        }
 
                     }
                 });
@@ -82,4 +90,9 @@ public class QRFragment extends Fragment {
         }
         return true;
     }
+
+    public static void setIndex(int index1){
+        index = ""+index1;
+    }
+
 }
