@@ -33,8 +33,6 @@ public class QRFragment extends Fragment {
 
     private static String index;
 
-    private final int REQUEST_ACCESS_FINE =0;
-
 
     public QRFragment(){
 
@@ -45,6 +43,9 @@ public class QRFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+
+
         final Activity activity = getActivity();
         view = inflater.inflate(R.layout.fragment_qr, container, false);
         CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
@@ -74,22 +75,9 @@ public class QRFragment extends Fragment {
         });
 
 
-        if(!haveCameraPermissons())
-            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, REQUEST_ACCESS_FINE);
-
         return view;
     }
 
-
-    private boolean haveCameraPermissons(){
-
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED ) {
-            return false;
-        }
-        return true;
-    }
 
     public static void setIndex(int index1){
         index = ""+index1;
