@@ -4,10 +4,11 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -33,14 +34,18 @@ public class CombFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view =  inflater.inflate(R.layout.fragment_game, container, false);
+        view =  inflater.inflate(R.layout.combinacion_correcta, container, false);
+
+        setInfo();
+      //  setImage();
+
 
         return view;
     }
 
-    public StringBuilder getInfo() {
+    public void setInfo() {
 
-        int rawID = view.getContext().getResources().getIdentifier("Obra_" + Game.getInstance().getInfoName(), "raw", view.getContext().getPackageName());
+        int rawID = view.getContext().getResources().getIdentifier("obra_" + Game.getInstance().getInfoName(), "raw", view.getContext().getPackageName());
 
 
         BufferedReader bR = new BufferedReader(new InputStreamReader(view.getResources().openRawResource(rawID)));
@@ -55,12 +60,19 @@ public class CombFragment extends Fragment {
             e.printStackTrace();
         }
 
-        return sB;
+
+        TextView name = view.findViewById(R.id.txNameCom);
+        name.setText(sB.toString().split(";")[0]);
+
+        TextView txInfo = view.findViewById(R.id.txtInfo);
+        txInfo.setText(sB.toString().split(";")[1]);
+
+
     }
 
     private void play(){
 
-        int rawID = view.getResources().getIdentifier(""+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
+        int rawID = view.getResources().getIdentifier("audio"+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
         mp = android.media.MediaPlayer.create(view.getContext(),rawID);
 
 
@@ -73,9 +85,10 @@ public class CombFragment extends Fragment {
 
     }
 
-    private void selectImage(){
+    private void setImage(){
 
-       // int rawID = view.getResources().getIdentifier(""+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
+        ImageView img = view.findViewById(R.id.imgAutor);
+        int imgId = view.getResources().getIdentifier("autor_"+Game.getInstance().getInfoName(),"drawable",view.getContext().getPackageName());
 
     }
 

@@ -1,8 +1,12 @@
 package es.uniovi.interactive_cubes.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +25,7 @@ public class GameFragment extends Fragment {
 
     private View view;
 
-    private boolean canVerify = false;
+    private final int REQUEST_ACCESS_FINE =0;
 
     public GameFragment() {
     }
@@ -39,6 +43,9 @@ public class GameFragment extends Fragment {
 
         setFunctionality();
         drawCubePanel();
+
+        if(!haveCameraPermissons())
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, REQUEST_ACCESS_FINE);
 
         return view;
 
@@ -82,7 +89,8 @@ public class GameFragment extends Fragment {
                }
 
                if(Game.getInstance().checkCombination(finalComb) != null){
-                   Toast.makeText(getContext(),"Combinacion correcta "+Game.getInstance().getInfoName(), Toast.LENGTH_SHORT).show();
+                   FragmentManager fm = getFragmentManager();
+                   fm.beginTransaction().replace(R.id.escenario, new CombFragment()).commit();
                }else{
                    Toast.makeText(getContext(),"Combinacion incorrecta", Toast.LENGTH_SHORT).show();
                }
@@ -134,6 +142,17 @@ public class GameFragment extends Fragment {
 
         }
 
+
+    }
+
+    private boolean haveCameraPermissons(){
+
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED ) {
+            return false;
+        }
+        return true;
     }
 
     class ButtonsOnClickListener  implements View.OnClickListener {

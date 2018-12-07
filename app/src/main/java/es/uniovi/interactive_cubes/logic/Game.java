@@ -154,7 +154,10 @@ public class Game {
     }
 
     public void removeActualComn() {
-        actualCombs.remove(actualCombs.size()-1);
+
+        if(getActualCombsSize() > 0)
+            actualCombs.remove(actualCombs.size()-1);
+
     }
 
     public void addCombination(String comb){
