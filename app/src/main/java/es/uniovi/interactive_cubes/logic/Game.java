@@ -92,16 +92,15 @@ public class Game {
         return -1;
     }
 
-    public boolean checkCombination(String combination) {
+    public Combination checkCombination(String combination) {
 
         for(Combination comb : validCombinations) {
-            Log.i("VALID",""+comb);
             if( comb.is(combination) && ( combination.length() == ( getNumberOfCubesOfCurrentLevel() * 2 ) ) ) {
-                return true;
+                return comb;
             }
         }
 
-        return false;
+        return null;
     }
 
     public boolean checkCube(String cubeId,String index) {
@@ -152,6 +151,10 @@ public class Game {
 
         return currentLevel;
 
+    }
+
+    public void removeActualComn() {
+        actualCombs.remove(actualCombs.size()-1);
     }
 
     public void addCombination(String comb){
@@ -259,4 +262,6 @@ public class Game {
     public List<String> getActualCombs() {
         return actualCombs;
     }
+
+
 }

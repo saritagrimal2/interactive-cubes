@@ -21,6 +21,8 @@ public class GameFragment extends Fragment {
 
     private View view;
 
+    private boolean canVerify = false;
+
     public GameFragment() {
     }
 
@@ -65,6 +67,7 @@ public class GameFragment extends Fragment {
         subsLevelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Game.getInstance().removeActualComn();
                 txLevel.setText("Nivel: "+Game.getInstance().decrementLevel());
                 drawCubePanel();
             }
@@ -73,12 +76,12 @@ public class GameFragment extends Fragment {
         verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String finalComb = "";
+               String finalComb = "";
                for(String s:Game.getInstance().getActualCombs()){
                    finalComb+=s;
                }
-                Log.i("FINAL",""+finalComb);
-               if(Game.getInstance().checkCombination(finalComb)){
+
+               if(Game.getInstance().checkCombination(finalComb) != null){
                    Toast.makeText(getContext(),"Combinacion correcta", Toast.LENGTH_SHORT).show();
                }else{
                    Toast.makeText(getContext(),"Combinacion incorrecta", Toast.LENGTH_SHORT).show();
@@ -104,6 +107,9 @@ public class GameFragment extends Fragment {
         //Creaación de los botones
         for (int i = 1; i < Game.getInstance().getLevel()+2; i++) {
 
+            Button verifyButton = (Button) view.findViewById(R.id.btnVerify);
+            verifyButton.setVisibility(View.VISIBLE);
+
             Button button = new Button(view.getContext());
             button.setId(i);
             //Asignamos propiedades de layout al boton
@@ -120,6 +126,8 @@ public class GameFragment extends Fragment {
 
             if( i-1<Game.getInstance().getActualCombsSize() && Game.getInstance().checkCube(Game.getInstance().getActualComb(i-1),""+i)){
                 button.setEnabled(false);
+            }else{
+                verifyButton.setVisibility(View.INVISIBLE);
             }
 
             lScroll.addView(button);
