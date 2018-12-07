@@ -1,12 +1,17 @@
 package es.uniovi.interactive_cubes.logic;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
 
     private List<Combination> validCombinations;
     private int currentLevel = 1;
+    
+    private List<String> actualCombs = new ArrayList<>();
 
     private static Game instance;
 
@@ -24,8 +29,8 @@ public class Game {
 
         // First valid combination
         Combination c1 = new Combination("primaveravivaldi", "Sinfonía nº 5 (Beethoven)", "Una canción mu bonita");
-        c1.addCube(new CubeFace("11"));
-        c1.addCube(new CubeFace("21"));
+        c1.addCube(new CubeFace("13"));
+        c1.addCube(new CubeFace("23"));
 
         validCombinations.add(c1);
 
@@ -87,18 +92,19 @@ public class Game {
         return -1;
     }
 
-    public Combination checkCombination(String combination) {
+    public boolean checkCombination(String combination) {
 
         for(Combination comb : validCombinations) {
+            Log.i("VALID",""+comb);
             if( comb.is(combination) && ( combination.length() == ( getNumberOfCubesOfCurrentLevel() * 2 ) ) ) {
-                return comb;
+                return true;
             }
         }
 
-        return null;
+        return false;
     }
 
-    public boolean checkCube(String cubeId) {
+    public boolean checkCube(String cubeId,String index) {
 
         // Checks that the id is not null
         if(cubeId == null) {
@@ -114,9 +120,16 @@ public class Game {
         if(!cubeId.matches("-?\\d+(\\.\\d+)?")) {
             return false;
         }
+
+
         
         // Check the available ranges of cubes ids.
-        if( cubeId.compareTo("11")<0 || cubeId.compareTo("55")>0 ) {
+        if(cubeId.charAt(0) != index.charAt(0)){
+            return false;
+        }
+
+
+        if( cubeId.compareTo(infLimit(cubeId))<0 || cubeId.compareTo(supLimit(cubeId))>0 ) {
             return false;
         }
 
@@ -139,5 +152,111 @@ public class Game {
 
         return currentLevel;
 
+    }
+
+    public void addCombination(String comb){
+        actualCombs.add(comb);
+    }
+
+    
+    public String getActualComb(int i) {
+        return actualCombs.get(i);
+    }
+
+    public int getActualCombsSize(){
+        return actualCombs.size();
+    }
+
+
+    public String getCubeName(String index) {
+
+        String name = "";
+        switch (index) {
+
+            case "1":
+                name= "Autor";
+                break;
+
+            case "2":
+                name= "Obra";
+                break;
+
+            case "3":
+                name= "Fecha";
+                break;
+
+            case "4":
+                name= "Época";
+                break;
+
+            case "5":
+                name="Lugar";
+                break;
+
+        }
+        return name;
+    }
+
+    private String supLimit(String index) {
+
+        String limit="";
+        switch (index.charAt(0)) {
+
+            case '1':
+                limit = "15";
+                break;
+
+            case '2':
+                limit = "25";
+                break;
+
+            case '3':
+                limit = "35";
+                break;
+
+            case '4':
+                limit = "43";
+                break;
+
+            case '5':
+                limit = "53";
+                break;
+
+        }
+        return limit;
+    }
+
+    private String infLimit(String index) {
+
+        String limit="";
+        switch (index.charAt(0)) {
+
+            case '1':
+                limit = "11";
+                break;
+
+            case '2':
+                limit = "21";
+                break;
+
+            case '3':
+                limit = "31";
+                break;
+
+            case '4':
+                limit = "41";
+                break;
+
+            case '5':
+                limit = "51";
+                break;
+
+
+        }
+        return limit;
+    }
+
+    public List<String> getActualCombs() {
+        return actualCombs;
     }
 }

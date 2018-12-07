@@ -13,14 +13,14 @@
 
         <LinearLayout
             android:id="@+id/topLinear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.332"
+            app:layout_constraintHorizontal_bias="0.43"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -29,6 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txConf"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 tools:layout_editor_absoluteX="136dp"
                 tools:layout_editor_absoluteY="284dp" />
 
@@ -43,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/txLevel"
+                    android:textSize="18sp"
                     tools:layout_editor_absoluteX="174dp"
                     tools:layout_editor_absoluteY="311dp" />
 
@@ -68,8 +71,10 @@
             <TextView
                 android:id="@+id/txScan"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="40dp"
                 android:text="@string/txScan"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 tools:layout_editor_absoluteX="140dp"
                 tools:layout_editor_absoluteY="448dp" />
 
@@ -78,14 +83,15 @@
         <ScrollView
             android:id="@+id/buttonScroll"
             android:layout_width="0dp"
-            android:layout_height="321dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btnVerify"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topLinear">
 
             <LinearLayout
                 android:id="@+id/downLinear"
@@ -109,6 +115,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
+            android:enabled="true"
             android:text="@string/btnVerify"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
