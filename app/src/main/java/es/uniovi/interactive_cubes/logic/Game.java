@@ -264,4 +264,7 @@ public class Game {
     }
 
 
+    public String getInfoName() {
+        return actualCombs.get(0);
+    }
 }

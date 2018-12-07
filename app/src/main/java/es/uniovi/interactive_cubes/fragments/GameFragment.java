@@ -82,7 +82,7 @@ public class GameFragment extends Fragment {
                }
 
                if(Game.getInstance().checkCombination(finalComb) != null){
-                   Toast.makeText(getContext(),"Combinacion correcta", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getContext(),"Combinacion correcta "+Game.getInstance().getInfoName(), Toast.LENGTH_SHORT).show();
                }else{
                    Toast.makeText(getContext(),"Combinacion incorrecta", Toast.LENGTH_SHORT).show();
                }
