@@ -73,5 +73,11 @@ public class CombFragment extends Fragment {
 
     }
 
+    private void selectImage(){
+
+       // int rawID = view.getResources().getIdentifier(""+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
+
+    }
+
 
 }
