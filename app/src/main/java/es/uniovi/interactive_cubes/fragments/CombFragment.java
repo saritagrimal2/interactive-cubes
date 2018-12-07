@@ -1,6 +1,7 @@
 package es.uniovi.interactive_cubes.fragments;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 import es.uniovi.interactive_cubes.R;
@@ -19,6 +21,8 @@ import es.uniovi.interactive_cubes.logic.Game;
 public class CombFragment extends Fragment {
 
     private View view;
+
+    private MediaPlayer mp;
 
     public CombFragment() {
         // Required empty public constructor
@@ -52,6 +56,21 @@ public class CombFragment extends Fragment {
         }
 
         return sB;
+    }
+
+    private void play(){
+
+        int rawID = view.getResources().getIdentifier(""+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
+        mp = android.media.MediaPlayer.create(view.getContext(),rawID);
+
+
+        try {
+            mp.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mp.start();
+
     }
 
 
