@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,6 +119,20 @@ public class CombFragment extends Fragment {
                                        @Override
                                        public void onClick(View view) {
                                            play();
+                                       }
+                                   }
+        );
+
+
+        Button btnFinish = view.findViewById(R.id.btnFinish);
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           play();
+                                           Game.getInstance().playAgain();
+                                           FragmentManager fm = getFragmentManager();
+                                           fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
                                        }
                                    }
         );
