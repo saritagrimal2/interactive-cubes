@@ -25,55 +25,163 @@ public class Game {
     private Game() {
         validCombinations = new ArrayList<Combination>();
 
-        // I know this is shit but for this project will serve.
+        //Level 1
 
-        // First valid combination
-        Combination c1 = new Combination("primaveravivaldi", "Sinfonía nº 5 (Beethoven)", "Una canción mu bonita");
-        c1.addCube(new CubeFace("13"));
-        c1.addCube(new CubeFace("23"));
+        Combination c11 = new Combination("Sinfonía nº5 en Do menor");
+        c11.addCube(new CubeFace("11"));
+        c11.addCube(new CubeFace("21"));
 
-        validCombinations.add(c1);
+        validCombinations.add(c11);
 
+        Combination c12 = new Combination("Serenata nº 13");
+        c12.addCube(new CubeFace("12"));
+        c12.addCube(new CubeFace("22"));
 
-        // Second valid combination
-        Combination c2 = new Combination("estaciones", "Sinfonía nº 5 (Beethoven)", "Una canción mu bonita");
-        c2.addCube(new CubeFace("12"));
-        c2.addCube(new CubeFace("22"));
-        c2.addCube(new CubeFace("32"));
+        validCombinations.add(c12);
 
-        validCombinations.add(c2);
+        Combination c13 = new Combination("Las cuatro estaciones");
+        c13.addCube(new CubeFace("13"));
+        c13.addCube(new CubeFace("23"));
 
+        validCombinations.add(c13);
 
-        // Third valid combination
-        Combination c3 = new Combination("juegodetronos", "Sinfonía nº 5 (Beethoven)", "Una canción mu bonita");
-        c3.addCube(new CubeFace("13"));
-        c3.addCube(new CubeFace("23"));
-        c3.addCube(new CubeFace("33"));
-        c3.addCube(new CubeFace("43"));
+        Combination c14 = new Combination("Tocata y fuga");
+        c14.addCube(new CubeFace("14"));
+        c14.addCube(new CubeFace("24"));
 
-        validCombinations.add(c3);
+        validCombinations.add(c14);
 
+        Combination c15 = new Combination("El lago de los cisnes");
+        c15.addCube(new CubeFace("15"));
+        c15.addCube(new CubeFace("25"));
 
-        // Fourth valid combination
-        Combination c4 = new Combination("doctorwho", "Sinfonía nº 5 (Beethoven)", "Una canción mu bonita");
-        c4.addCube(new CubeFace("14"));
-        c4.addCube(new CubeFace("24"));
-        c4.addCube(new CubeFace("34"));
-        c4.addCube(new CubeFace("44"));
-        c4.addCube(new CubeFace("54"));
+        validCombinations.add(c15);
 
-        validCombinations.add(c4);
+        //Level 2
 
+        Combination c21 = new Combination("Sinfonía nº5 en Do menor");
+        c21.addCube(new CubeFace("11"));
+        c21.addCube(new CubeFace("21"));
+        c21.addCube(new CubeFace("31"));
 
-        // Fifth valid combination
-        Combination c5 = new Combination("allice", "Sinfonía nº 5 (Beethoven)", "Una canción mu bonita");
-        c5.addCube(new CubeFace("15"));
-        c5.addCube(new CubeFace("25"));
-        c5.addCube(new CubeFace("35"));
-        c5.addCube(new CubeFace("45"));
-        c5.addCube(new CubeFace("55"));
+        validCombinations.add(c21);
 
-        validCombinations.add(c5);
+        Combination c22 = new Combination("Serenata nº 13");
+        c22.addCube(new CubeFace("12"));
+        c22.addCube(new CubeFace("22"));
+        c22.addCube(new CubeFace("32"));
+
+        validCombinations.add(c22);
+
+        Combination c23 = new Combination("Las cuatro estaciones");
+        c23.addCube(new CubeFace("13"));
+        c23.addCube(new CubeFace("23"));
+        c23.addCube(new CubeFace("33"));
+
+        validCombinations.add(c23);
+
+        Combination c24 = new Combination("Tocata y fuga");
+        c24.addCube(new CubeFace("14"));
+        c24.addCube(new CubeFace("24"));
+        c24.addCube(new CubeFace("34"));
+
+        validCombinations.add(c24);
+
+        Combination c25 = new Combination("El lago de los cisnes");
+        c25.addCube(new CubeFace("15"));
+        c25.addCube(new CubeFace("25"));
+        c25.addCube(new CubeFace("35"));
+
+        validCombinations.add(c25);
+
+        //Level 3
+
+        Combination c31 = new Combination("Sinfonía nº5 en Do menor");
+        c31.addCube(new CubeFace("11"));
+        c31.addCube(new CubeFace("21"));
+        c31.addCube(new CubeFace("31"));
+        c31.addCube(new CubeFace("41"));
+
+        validCombinations.add(c31);
+
+        Combination c32 = new Combination("Serenata nº 13");
+        c32.addCube(new CubeFace("12"));
+        c32.addCube(new CubeFace("22"));
+        c32.addCube(new CubeFace("32"));
+        c32.addCube(new CubeFace("42"));
+
+        validCombinations.add(c32);
+
+        Combination c33 = new Combination("Las cuatro estaciones");
+        c33.addCube(new CubeFace("13"));
+        c33.addCube(new CubeFace("23"));
+        c33.addCube(new CubeFace("33"));
+        c33.addCube(new CubeFace("43"));
+
+        validCombinations.add(c33);
+
+        Combination c34 = new Combination("Tocata y fuga");
+        c34.addCube(new CubeFace("14"));
+        c34.addCube(new CubeFace("24"));
+        c34.addCube(new CubeFace("34"));
+        c34.addCube(new CubeFace("43"));
+
+        validCombinations.add(c34);
+
+        Combination c35 = new Combination("El lago de los cisnes");
+        c35.addCube(new CubeFace("15"));
+        c35.addCube(new CubeFace("25"));
+        c35.addCube(new CubeFace("35"));
+        c35.addCube(new CubeFace("41"));
+
+        validCombinations.add(c35);
+
+        //Level 4
+
+        Combination c41 = new Combination("Sinfonía nº5 en Do menor");
+        c41.addCube(new CubeFace("11"));
+        c41.addCube(new CubeFace("21"));
+        c41.addCube(new CubeFace("31"));
+        c41.addCube(new CubeFace("41"));
+        c41.addCube(new CubeFace("51"));
+
+        validCombinations.add(c41);
+
+        Combination c42 = new Combination("Serenata nº 13");
+        c42.addCube(new CubeFace("12"));
+        c42.addCube(new CubeFace("22"));
+        c42.addCube(new CubeFace("32"));
+        c42.addCube(new CubeFace("42"));
+        c42.addCube(new CubeFace("51"));
+
+        validCombinations.add(c42);
+
+        Combination c43 = new Combination("Las cuatro estaciones");
+        c43.addCube(new CubeFace("13"));
+        c43.addCube(new CubeFace("23"));
+        c43.addCube(new CubeFace("33"));
+        c43.addCube(new CubeFace("43"));
+        c43.addCube(new CubeFace("52"));
+
+        validCombinations.add(c43);
+
+        Combination c44 = new Combination("Tocata y fuga");
+        c44.addCube(new CubeFace("14"));
+        c44.addCube(new CubeFace("24"));
+        c44.addCube(new CubeFace("34"));
+        c44.addCube(new CubeFace("43"));
+        c44.addCube(new CubeFace("53"));
+
+        validCombinations.add(c44);
+
+        Combination c45 = new Combination("El lago de los cisnes");
+        c45.addCube(new CubeFace("15"));
+        c45.addCube(new CubeFace("25"));
+        c45.addCube(new CubeFace("35"));
+        c45.addCube(new CubeFace("41"));
+        c45.addCube(new CubeFace("53"));
+
+        validCombinations.add(c45);
 
     }
 
