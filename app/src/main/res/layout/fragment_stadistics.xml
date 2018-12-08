@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.StadisticsFragment">
+    tools:context=".fragments.StadisticsFragment"
+    android:background="@color/blanco">
 
     <!-- TODO: Update blank fragment layout -->
 

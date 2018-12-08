@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="200dp"
+    android:background="@color/fondo">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -48,6 +49,7 @@
             android:layout_margin="20dp"
             android:layout_marginBottom="8dp"
             android:text="La combinación de cubos introducidos es incorrecta.¡Vuelve a intentarlo!"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/btnTryAgain"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +63,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="Volver a intentarlo"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"

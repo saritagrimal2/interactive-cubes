@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/fondo">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -69,7 +70,8 @@
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
 
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@android:color/black" />
             </LinearLayout>
         </ScrollView>
 
@@ -125,6 +127,7 @@
             android:layout_marginTop="284dp"
             android:text="TextView"
             android:textColor="@android:color/black"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txInfo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

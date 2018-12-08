@@ -14,7 +14,7 @@
         <LinearLayout
             android:id="@+id/topLinear"
             android:layout_width="match_parent"
-            android:layout_height="137dp"
+            android:layout_height="174dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -36,12 +36,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txLevel"
-                    android:layout_width="wrap_content"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/txLevel"
@@ -53,8 +54,11 @@
                     android:id="@+id/btnSubsLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="8sp"
                     android:layout_weight="1"
                     android:text="@string/btnSubsLevel"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
                     tools:layout_editor_absoluteX="128dp"
                     tools:layout_editor_absoluteY="366dp" />
 
@@ -64,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/btnAddLevel"
+                    android:textSize="30sp"
                     tools:layout_editor_absoluteX="228dp"
                     tools:layout_editor_absoluteY="366dp" />
             </LinearLayout>
@@ -72,6 +77,8 @@
                 android:id="@+id/txScan"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginBottom="20sp"
+                android:layout_marginTop="20sp"
                 android:text="@string/txScan"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
@@ -83,7 +90,7 @@
         <ScrollView
             android:id="@+id/buttonScroll"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="356dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"

@@ -133,7 +133,7 @@ public class GameFragment extends Fragment {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-
+        lp.setMargins(0, 10, 0, 0);
 
         //Creaación de los botones
         for (int i = 1; i < Game.getInstance().getLevel()+2; i++) {
@@ -157,32 +157,30 @@ public class GameFragment extends Fragment {
 
             if( i-1<Game.getInstance().getActualCombsSize() && Game.getInstance().checkCube(Game.getInstance().getActualComb(i-1),""+i)){
                 button.setEnabled(false);
-            }else{
+            }else {
                 verifyButton.setVisibility(View.INVISIBLE);
-            }
+
+                switch (i) {
 
 
-            switch(i){
+                    case 1:
+                        button.setBackgroundColor(getResources().getColor(R.color.verde));
+                        break;
+                    case 2:
+                        button.setBackgroundColor(getResources().getColor(R.color.naranja));
+                        break;
+                    case 3:
+                        button.setBackgroundColor(getResources().getColor(R.color.rosa));
+                        break;
+                    case 4:
+                        button.setBackgroundColor(getResources().getColor(R.color.azul));
+                        break;
+                    case 5:
+                        button.setBackgroundColor(getResources().getColor(R.color.amarillo));
+                        break;
 
 
-                case 1:
-                    button.setBackgroundColor(getResources().getColor(R.color.verde));
-                    break;
-                case 2:
-                    button.setBackgroundColor(getResources().getColor(R.color.naranja));
-                    break;
-                case 3:
-                    button.setBackgroundColor(getResources().getColor(R.color.rosa));
-                    break;
-                case 4:
-                    button.setBackgroundColor(getResources().getColor(R.color.azul));
-                    break;
-                case 5:
-                    button.setBackgroundColor(getResources().getColor(R.color.amarillo));
-                    break;
-
-
-
+                }
             }
 
 
