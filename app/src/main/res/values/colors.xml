@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorBar">#AB6E4C</color>
+
+    <color name="verde">#2CFF38</color>
+    <color name="naranja">#FF5500</color>
+    <color name="rosa">#FF66AB</color>
+    <color name="azul">#4EFFFF</color>
+    <color name="amarillo">#F9FF4E</color>
+
+
 </resources>

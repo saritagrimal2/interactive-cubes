@@ -378,4 +378,8 @@ public class Game {
     public String getInfoName() {
         return actualCombs.get(0);
     }
+
+    public void playAgain() {
+         actualCombs = new ArrayList<>();
+    }
 }

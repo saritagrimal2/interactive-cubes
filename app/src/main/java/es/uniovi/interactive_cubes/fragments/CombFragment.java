@@ -4,10 +4,12 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,9 +38,13 @@ public class CombFragment extends Fragment {
 
         view =  inflater.inflate(R.layout.combinacion_correcta, container, false);
 
-        setInfo();
-      //  setImage();
+        int rawID = view.getResources().getIdentifier("audio"+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
+        mp = android.media.MediaPlayer.create(view.getContext(),rawID);
 
+
+        setInfo();
+        setImage();
+        asignFuncionality();
 
         return view;
     }
@@ -72,16 +78,25 @@ public class CombFragment extends Fragment {
 
     private void play(){
 
-        int rawID = view.getResources().getIdentifier("audio"+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
-        mp = android.media.MediaPlayer.create(view.getContext(),rawID);
+        if(mp.isPlaying()){
+            mp.stop();
+            try {
+                mp.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
 
 
-        try {
-            mp.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
+            int rawID = view.getResources().getIdentifier("audio"+Game.getInstance().getInfoName(),"raw",view.getContext().getPackageName());
+            mp = android.media.MediaPlayer.create(view.getContext(),rawID);
+
+
+            mp.start();
+
         }
-        mp.start();
+
+
 
     }
 
@@ -89,6 +104,24 @@ public class CombFragment extends Fragment {
 
         ImageView img = view.findViewById(R.id.imgAutor);
         int imgId = view.getResources().getIdentifier("autor_"+Game.getInstance().getInfoName(),"drawable",view.getContext().getPackageName());
+
+        img.setBackgroundResource(imgId);
+
+    }
+
+
+    private void asignFuncionality(){
+
+        Button btnPlay = view.findViewById(R.id.btnPlay);
+
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           play();
+                                       }
+                                   }
+        );
+
 
     }
 
