@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 import es.uniovi.interactive_cubes.fragments.GameFragment;
+import es.uniovi.interactive_cubes.fragments.RankingFragment;
 import es.uniovi.interactive_cubes.fragments.StadisticsFragment;
 import es.uniovi.interactive_cubes.logic.Game;
 
@@ -140,7 +141,8 @@ public class MainActivity extends AppCompatActivity
             fm.beginTransaction().replace(R.id.escenario, new StadisticsFragment()).commit();
 
         } else if (id == R.id.ranking) {
-
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.escenario, new RankingFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
