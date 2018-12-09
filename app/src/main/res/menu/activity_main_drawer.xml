@@ -6,13 +6,16 @@
 
         <item
             android:id="@+id/game"
+            android:icon="@drawable/ic_round_games_24px"
             android:title="Juego" />
         <item
             android:id="@+id/stadistics"
+            android:icon="@drawable/ic_round_bar_chart_24px"
             android:title="Estadísticas" />
 
         <item
             android:id="@+id/ranking"
+            android:icon="@drawable/ic_round_public_24px"
             android:title="Ranking" />
     </group>
 
