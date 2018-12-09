@@ -1,6 +1,7 @@
 package es.uniovi.interactive_cubes;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -20,10 +21,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import es.uniovi.interactive_cubes.fragments.GameFragment;
+import es.uniovi.interactive_cubes.fragments.RankingFragment;
 import es.uniovi.interactive_cubes.fragments.StadisticsFragment;
 import es.uniovi.interactive_cubes.logic.Game;
 
@@ -63,6 +70,15 @@ public class MainActivity extends AppCompatActivity
         game = Game.getInstance();
 
 
+        View headView = navigationView.getHeaderView(0);
+
+        TextView name = (TextView) headView.findViewById(R.id.textName);
+
+        name.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        name.setTextSize(20);
+        name.setTextColor(getResources().getColor(R.color.blanco));
+
+
     }
 
     @Override
@@ -84,14 +100,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menubtn) {
-        //    return true;
+
+            final Dialog help = new Dialog(this);
+            help.setContentView(R.layout.help);
+            help.show();
+
+            Button btnAccept = help.findViewById(R.id.btnAcept);
+            btnAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    help.dismiss();
+                }
+            });
+
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -103,27 +130,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.game) {
 
-            if(!haveReadPermissons())
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_ACCESS_FINE);
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
 
-            galIntent = new Intent(
-                    Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        } else if (id == R.id.stadistics) {
 
-            startActivityForResult(Intent.createChooser(galIntent,"SelectImage"), RESULT_LOAD_IMAGE);
-        } else if (id == R.id.nav_gallery) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.escenario, new StadisticsFragment()).commit();
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.ranking) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.escenario, new RankingFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -158,29 +177,11 @@ public class MainActivity extends AppCompatActivity
 
             Bitmap bitmap = bundle.getParcelable("data");
 
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-            imageView.setImageBitmap(bitmap);
+          //  ImageView imageView = (ImageView) findViewById(R.id.imageView);
+         //   imageView.setImageBitmap(bitmap);
 
         }
 
     }
 
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    private boolean haveReadPermissons(){
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED ) {
-            return false;
-        }
-        return true;
-    }
 }

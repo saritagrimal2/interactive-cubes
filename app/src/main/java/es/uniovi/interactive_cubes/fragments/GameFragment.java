@@ -18,6 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import es.uniovi.interactive_cubes.logic.Entities.User;
 import es.uniovi.interactive_cubes.logic.Game;
 import es.uniovi.interactive_cubes.R;
 
@@ -26,6 +35,10 @@ import es.uniovi.interactive_cubes.R;
 public class GameFragment extends Fragment {
 
     private View view;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseAuth;
+
+    private User user;
 
     private final int REQUEST_ACCESS_FINE =0;
 
@@ -45,6 +58,25 @@ public class GameFragment extends Fragment {
 
         setFunctionality();
         drawCubePanel();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.child("users").child(FirebaseAuth.getInstance().getUid()).getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("CANCEL", "Failed to read value.", error.toException());
+            }
+        });
+
+
 
         if(!haveCameraPermissons())
             ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, REQUEST_ACCESS_FINE);
@@ -91,6 +123,7 @@ public class GameFragment extends Fragment {
                }
 
                if(Game.getInstance().checkCombination(finalComb) != null){
+                   addValidComb();
                    FragmentManager fm = getFragmentManager();
                    fm.beginTransaction().replace(R.id.escenario, new CombFragment()).commit();
                }else{
@@ -204,6 +237,7 @@ public class GameFragment extends Fragment {
         return true;
     }
 
+
     class ButtonsOnClickListener  implements View.OnClickListener {
 
         private int index;
@@ -219,6 +253,11 @@ public class GameFragment extends Fragment {
            fm.beginTransaction().replace(R.id.escenario, new QRFragment()).commit();
            QRFragment.setIndex(this.index);
         }
+    }
+
+    private void addValidComb(){
+        mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).child("aux").setValue(0);
+        mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).child("goodCombinations").setValue(Integer.parseInt(user.getGoodCombinations().toString())+1);
     }
 
 }

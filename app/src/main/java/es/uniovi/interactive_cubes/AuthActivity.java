@@ -7,9 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +26,12 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import es.uniovi.interactive_cubes.logic.Entities.User;
+import es.uniovi.interactive_cubes.logic.Game;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -40,6 +44,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     //Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference mDatabase;
 
     private CallbackManager mCallbackManager;
 
@@ -53,12 +58,13 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         //inicializamos el objeto firebaseAuth
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         //Referenciamos los views
         TextEmail = (EditText) findViewById(R.id.TxtEmail);
         TextPassword = (EditText) findViewById(R.id.TxtPassword);
 
         btnRegistrar = (Button) findViewById(R.id.botonRegistrar);
-        btnLogin = (Button) findViewById(R.id.botonLogin);
+        btnLogin = (Button) findViewById(R.id.btnLog);
 
         progressDialog = new ProgressDialog(this);
 
@@ -89,6 +95,11 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         //asociamos un oyente al evento clic del botón
         btnRegistrar.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
+
+
+        //Query num = FirebaseDatabase.getInstance().getReference("users");
+
+
 
     }
 
@@ -122,6 +133,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                         if (task.isSuccessful()) {
 
                             Toast.makeText(AuthActivity.this, "Se ha registrado el usuario con el email: " + TextEmail.getText(), Toast.LENGTH_LONG).show();
+                            writeNewUser();
+
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión
                                 Toast.makeText(AuthActivity.this, "Ese usuario ya existe ", Toast.LENGTH_SHORT).show();
@@ -169,7 +182,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             //intencion.putExtra(MainActivity.user, user);
                             startActivity(intencion);
 
-
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión
                                 Toast.makeText(AuthActivity.this, "Ese usuario ya existe ", Toast.LENGTH_SHORT).show();
@@ -194,7 +206,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 //Invocamos al método:
                 registrarUsuario();
                 break;
-            case R.id.botonLogin:
+            case R.id.btnLog:
                 loguearUsuario();
                 break;
         }
@@ -239,6 +251,16 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 });
+
+    }
+
+    private void writeNewUser() {
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        User user = new User(firebaseAuth.getCurrentUser().getEmail(),0l);
+        mDatabase.child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+
     }
 
 
