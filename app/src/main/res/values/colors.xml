@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorBar">#AB6E4C</color>
+
+    <color name="verde">#00BA09</color>
+    <color name="naranja">#FF7A00</color>
+    <color name="rosa">#F278BE</color>
+    <color name="azul">#36C5FF</color>
+    <color name="amarillo">#F7E114</color>
+    <color name= "blanco">#FFFFFF</color>
+    <color name= "negro">#000000</color>
+    <color name= "fondo">#FFD59B</color>
+    <color name= "tickColor">#42EF69</color>
+
+
 </resources>

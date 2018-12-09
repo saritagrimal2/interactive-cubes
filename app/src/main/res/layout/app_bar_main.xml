@@ -15,8 +15,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="@color/colorBar"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Cubos Interactivos"/>
 
     </android.support.design.widget.AppBarLayout>
 

@@ -1,6 +1,8 @@
 package es.uniovi.interactive_cubes.fragments;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -92,7 +94,28 @@ public class GameFragment extends Fragment {
                    FragmentManager fm = getFragmentManager();
                    fm.beginTransaction().replace(R.id.escenario, new CombFragment()).commit();
                }else{
-                   Toast.makeText(getContext(),"Combinacion incorrecta", Toast.LENGTH_SHORT).show();
+
+                   final Dialog info = new Dialog(getActivity());
+                   info.setContentView(R.layout.combinacion_incorrecta);
+                   info.show();
+
+                   Button btn = info.findViewById(R.id.btnTryAgain);
+                   btn.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                            info.dismiss();
+                       }
+                   });
+
+
+                   info.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                       @Override
+                       public void onDismiss(DialogInterface dialogInterface) {
+                           Game.getInstance().playAgain();
+                           drawCubePanel();
+                       }
+                   });
+
                }
 
             }
@@ -110,7 +133,7 @@ public class GameFragment extends Fragment {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-
+        lp.setMargins(0, 10, 0, 0);
 
         //Creaación de los botones
         for (int i = 1; i < Game.getInstance().getLevel()+2; i++) {
@@ -125,7 +148,7 @@ public class GameFragment extends Fragment {
             //Asignamos Texto al botón
             button.setText("Cubo "+Game.getInstance().getCubeName(""+i));
             //Alineación
-            button.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             //Aumentamos el tamaño de la letra
             button.setTextSize(20);
 
@@ -134,9 +157,35 @@ public class GameFragment extends Fragment {
 
             if( i-1<Game.getInstance().getActualCombsSize() && Game.getInstance().checkCube(Game.getInstance().getActualComb(i-1),""+i)){
                 button.setEnabled(false);
-            }else{
+            }else {
                 verifyButton.setVisibility(View.INVISIBLE);
+
+
+                button.setPadding(60,60,60,60);
+
+                switch (i) {
+
+
+                    case 1:
+                        button.setBackgroundColor(getResources().getColor(R.color.verde));
+                        break;
+                    case 2:
+                        button.setBackgroundColor(getResources().getColor(R.color.naranja));
+                        break;
+                    case 3:
+                        button.setBackgroundColor(getResources().getColor(R.color.rosa));
+                        break;
+                    case 4:
+                        button.setBackgroundColor(getResources().getColor(R.color.azul));
+                        break;
+                    case 5:
+                        button.setBackgroundColor(getResources().getColor(R.color.amarillo));
+                        break;
+
+
+                }
             }
+
 
             lScroll.addView(button);
 
