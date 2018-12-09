@@ -258,8 +258,6 @@ public class GameFragment extends Fragment {
     private void addValidComb(){
         mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).child("aux").setValue(0);
         mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).child("goodCombinations").setValue(Integer.parseInt(user.getGoodCombinations().toString())+1);
-
-
     }
 
 }

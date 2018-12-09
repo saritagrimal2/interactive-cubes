@@ -24,7 +24,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import es.uniovi.interactive_cubes.fragments.GameFragment;
 import es.uniovi.interactive_cubes.fragments.StadisticsFragment;
@@ -64,6 +67,15 @@ public class MainActivity extends AppCompatActivity
         fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
 
         game = Game.getInstance();
+
+
+        View headView = navigationView.getHeaderView(0);
+
+        TextView name = (TextView) headView.findViewById(R.id.textName);
+
+        name.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        name.setTextSize(20);
+        name.setTextColor(getResources().getColor(R.color.blanco));
 
 
     }
@@ -117,26 +129,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.game) {
 
-            if(!haveReadPermissons())
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_ACCESS_FINE);
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.escenario, new GameFragment()).commit();
 
-            galIntent = new Intent(
-                    Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        } else if (id == R.id.stadistics) {
 
-            startActivityForResult(Intent.createChooser(galIntent,"SelectImage"), RESULT_LOAD_IMAGE);
-        } else if (id == R.id.nav_gallery) {
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.escenario, new StadisticsFragment()).commit();
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.ranking) {
 
         }
 
@@ -172,29 +175,11 @@ public class MainActivity extends AppCompatActivity
 
             Bitmap bitmap = bundle.getParcelable("data");
 
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-            imageView.setImageBitmap(bitmap);
+          //  ImageView imageView = (ImageView) findViewById(R.id.imageView);
+         //   imageView.setImageBitmap(bitmap);
 
         }
 
     }
 
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    private boolean haveReadPermissons(){
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED ) {
-            return false;
-        }
-        return true;
-    }
 }

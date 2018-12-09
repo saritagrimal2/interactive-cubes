@@ -38,42 +38,27 @@ public class StadisticsFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                User value = dataSnapshot.child("users").child("1").getValue(User.class);
+                User value = dataSnapshot.child("users").child(FirebaseAuth.getInstance().getUid()).getValue(User.class);
                 TextView textView = view.findViewById(R.id.textView2);
-                textView.setText(value.toString());
-            //   Log.d("CHANGE", "Value is: " + value);
+                textView.setText("Combinaciones correctas: "+value.getGoodCombinations());
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
                 Log.w("CANCEL", "Failed to read value.", error.toException());
             }
         });
 
-
-        Button button = view.findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                writeNewUser(0,"Pablo","paaa@es.com",5l);
-            }
-        });
-
+        auxilio();
 
         return view;
     }
 
-    private void writeNewUser(long aux, String name, String email,Long goodCombinations) {
-        User user = new User( email,goodCombinations);
-        mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).setValue(user);
-
+    private void auxilio(){
+        mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).child("aux").setValue(0);
     }
 
 
