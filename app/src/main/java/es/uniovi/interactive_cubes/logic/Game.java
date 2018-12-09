@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import es.uniovi.interactive_cubes.logic.Entities.User;
+
 public class Game {
 
     private List<Combination> validCombinations;
@@ -14,6 +16,8 @@ public class Game {
     private List<String> actualCombs = new ArrayList<>();
 
     private static Game instance;
+
+    private User user;
 
 
     public static Game getInstance(){
@@ -381,5 +385,13 @@ public class Game {
 
     public void playAgain() {
          actualCombs = new ArrayList<>();
+    }
+
+    public void addActualUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

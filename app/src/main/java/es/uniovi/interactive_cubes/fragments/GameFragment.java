@@ -18,6 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import es.uniovi.interactive_cubes.logic.Entities.User;
 import es.uniovi.interactive_cubes.logic.Game;
 import es.uniovi.interactive_cubes.R;
 
@@ -26,6 +31,8 @@ import es.uniovi.interactive_cubes.R;
 public class GameFragment extends Fragment {
 
     private View view;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth firebaseAuth;
 
     private final int REQUEST_ACCESS_FINE =0;
 
@@ -45,6 +52,8 @@ public class GameFragment extends Fragment {
 
         setFunctionality();
         drawCubePanel();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if(!haveCameraPermissons())
             ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, REQUEST_ACCESS_FINE);
@@ -91,6 +100,7 @@ public class GameFragment extends Fragment {
                }
 
                if(Game.getInstance().checkCombination(finalComb) != null){
+                   addValidComb();
                    FragmentManager fm = getFragmentManager();
                    fm.beginTransaction().replace(R.id.escenario, new CombFragment()).commit();
                }else{
@@ -204,6 +214,7 @@ public class GameFragment extends Fragment {
         return true;
     }
 
+
     class ButtonsOnClickListener  implements View.OnClickListener {
 
         private int index;
@@ -219,6 +230,15 @@ public class GameFragment extends Fragment {
            fm.beginTransaction().replace(R.id.escenario, new QRFragment()).commit();
            QRFragment.setIndex(this.index);
         }
+    }
+
+    private void addValidComb(){
+
+       int num = Integer.parseInt(Game.getInstance().getUser().getGoodCombinations());
+
+
+        mDatabase.child("users").child(Game.getInstance().getUser().getEmail()).child("goodCombinations").setValue(""+num+1);
+
     }
 
 }
