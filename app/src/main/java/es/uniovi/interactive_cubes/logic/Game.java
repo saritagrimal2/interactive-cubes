@@ -17,8 +17,6 @@ public class Game {
 
     private static Game instance;
 
-    private User user;
-
 
     public static Game getInstance(){
         if(instance == null)
@@ -387,11 +385,4 @@ public class Game {
          actualCombs = new ArrayList<>();
     }
 
-    public void addActualUser(User user) {
-        this.user = user;
-    }
-
-    public User getUser() {
-        return user;
-    }
 }

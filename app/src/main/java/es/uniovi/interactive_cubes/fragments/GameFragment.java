@@ -53,6 +53,7 @@ public class GameFragment extends Fragment {
         setFunctionality();
         drawCubePanel();
 
+        firebaseAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if(!haveCameraPermissons())
@@ -100,7 +101,7 @@ public class GameFragment extends Fragment {
                }
 
                if(Game.getInstance().checkCombination(finalComb) != null){
-                   addValidComb();
+                 //  addValidComb();
                    FragmentManager fm = getFragmentManager();
                    fm.beginTransaction().replace(R.id.escenario, new CombFragment()).commit();
                }else{
@@ -234,11 +235,14 @@ public class GameFragment extends Fragment {
 
     private void addValidComb(){
 
-       int num = Integer.parseInt(Game.getInstance().getUser().getGoodCombinations());
+        DatabaseReference num = mDatabase.child("users").child(decodeString(firebaseAuth.getCurrentUser().getEmail())).child("goodCombinations");
 
+        mDatabase.child("users").child(decodeString(firebaseAuth.getCurrentUser().getEmail())).child("goodCombinations").setValue(""+Integer.parseInt(num.getKey())+1);
 
-        mDatabase.child("users").child(Game.getInstance().getUser().getEmail()).child("goodCombinations").setValue(""+num+1);
+    }
 
+    public static String decodeString(String string) {
+        return string.replace(",", ".");
     }
 
 }

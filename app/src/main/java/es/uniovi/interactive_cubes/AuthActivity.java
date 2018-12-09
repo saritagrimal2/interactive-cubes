@@ -128,7 +128,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                         if (task.isSuccessful()) {
 
                             Toast.makeText(AuthActivity.this, "Se ha registrado el usuario con el email: " + TextEmail.getText(), Toast.LENGTH_LONG).show();
-
+                            writeNewUser();
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión
@@ -176,7 +176,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             Intent intencion = new Intent(getApplication(), MainActivity.class);
                             //intencion.putExtra(MainActivity.user, user);
                             startActivity(intencion);
-                            writeNewUser();
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {//si se presenta una colisión
@@ -252,10 +251,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     private void writeNewUser() {
         User user = new User(firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getEmail(),"0");
-
-        Game.getInstance().addActualUser(user);
-
-        mDatabase.child("users").child(user.getEmail()).setValue(user);
+        mDatabase.child("users").setValue(user);
 
     }
 
