@@ -2,27 +2,18 @@ package es.uniovi.interactive_cubes.logic.Entities;
 
 public class User {
 
-    private String username;
     private String email;
-    private String goodCombinations;
+    private Long goodCombinations;
+    private Long aux;
 
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String username, String email,String goodCombinations) {
-        this.username = username;
+    public User(String email,Long goodCombinations) {
         this.email = email;
         this.goodCombinations = goodCombinations;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -33,18 +24,26 @@ public class User {
         this.email = email;
     }
 
-    public String getGoodCombinations() {
+    public Long getGoodCombinations() {
         return goodCombinations;
     }
 
-    public void setGoodCombinations(String goodCombinations) {
+    public void setGoodCombinations(Long goodCombinations) {
         this.goodCombinations = goodCombinations;
+    }
+
+    public Long getAux() {
+        return aux;
+    }
+
+    public void setAux(Long aux) {
+        this.aux = aux;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "username='"  + '\'' +
                 ", email='" + email + '\'' +
                 ", goodCombinations='" + goodCombinations + '\'' +
                 '}';

@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import es.uniovi.interactive_cubes.logic.Entities.User;
 import es.uniovi.interactive_cubes.logic.Game;
@@ -57,7 +58,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         //inicializamos el objeto firebaseAuth
         firebaseAuth = FirebaseAuth.getInstance();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Referenciamos los views
         TextEmail = (EditText) findViewById(R.id.TxtEmail);
@@ -95,6 +95,11 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         //asociamos un oyente al evento clic del botón
         btnRegistrar.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
+
+
+        //Query num = FirebaseDatabase.getInstance().getReference("users");
+
+
 
     }
 
@@ -250,8 +255,11 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void writeNewUser() {
-        User user = new User(firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getEmail(),"0");
-        mDatabase.child("users").setValue(user);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        User user = new User(firebaseAuth.getCurrentUser().getEmail(),0l);
+        mDatabase.child("users").child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
 
     }
 

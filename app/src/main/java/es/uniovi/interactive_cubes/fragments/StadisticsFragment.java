@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +62,7 @@ public class StadisticsFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                writeNewUser("1","Pablo","paaa@es.com","5");
+                writeNewUser(0,"Pablo","paaa@es.com",5l);
             }
         });
 
@@ -69,9 +70,9 @@ public class StadisticsFragment extends Fragment {
         return view;
     }
 
-    private void writeNewUser(String userId, String name, String email,String goodCombinations) {
-        User user = new User(name, email,goodCombinations);
-        mDatabase.child("users").child(userId).setValue(user);
+    private void writeNewUser(long aux, String name, String email,Long goodCombinations) {
+        User user = new User( email,goodCombinations);
+        mDatabase.child("users").child(FirebaseAuth.getInstance().getUid()).setValue(user);
 
     }
 
