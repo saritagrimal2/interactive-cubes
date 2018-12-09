@@ -160,6 +160,9 @@ public class GameFragment extends Fragment {
             }else {
                 verifyButton.setVisibility(View.INVISIBLE);
 
+
+                button.setPadding(60,60,60,60);
+
                 switch (i) {
 
 

@@ -47,6 +47,7 @@
                     android:layout_weight="1"
                     android:text="@string/txLevel"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     tools:layout_editor_absoluteX="174dp"
                     tools:layout_editor_absoluteY="311dp" />
 
