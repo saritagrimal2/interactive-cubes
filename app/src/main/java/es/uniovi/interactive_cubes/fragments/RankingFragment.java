@@ -131,10 +131,11 @@ public class RankingFragment extends Fragment {
             button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             //Aumentamos el tamaño de la letra
             button.setTextSize(16);
-            button.setTextColor(getResources().getColor(R.color.negro));
+            if (isAdded()) {
+                button.setTextColor(getResources().getColor(R.color.negro));
+                button.setBackgroundColor(getResources().getColor(R.color.blanco));
+            }
 
-
-            button.setBackgroundColor(getResources().getColor(R.color.blanco));
             button.setEnabled(false);
 
             lScroll.addView(button);
