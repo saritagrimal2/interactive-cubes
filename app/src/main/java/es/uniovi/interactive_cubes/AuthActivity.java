@@ -241,7 +241,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent intencion = new Intent(getApplication(), MainActivity.class);
-                          //  intencion.putExtra(WellcomeActivity.user, user.getDisplayName());
                             startActivity(intencion);
                         } else{
                             Toast.makeText(AuthActivity.this, "Authentication failed.",
